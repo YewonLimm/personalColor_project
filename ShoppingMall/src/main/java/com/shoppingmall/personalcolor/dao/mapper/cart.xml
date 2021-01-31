@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.shoppingmall.personalcolor.dao.CartDao">
+	
+	<select id="itemDetail" parameterType="String" resultType="com.shoppingmall.personalcolor.dto.ProductDto">
+		SELECT *
+		  FROM M_PRODUCT
+		 WHERE M_PRODUCT_CODE = #{m_product_code}
+	</select>
+	
+	<insert id="addItemToCart">
+		INSERT INTO
+   M_ORDERPROD (M_ORDERPROD_NO, M_PRODUCT_CODE, M_CUSTOMER_ID, M_ORDERPROD_COUNT, M_ORDERPROD_PRICE, M_ORDERPROD_CHECK, M_ORDERPROD_REVIEWCHECK)
+		VALUES (M_ORDERPROD_SEQ.NEXTVAL, #{param1}, #{param2}, #{param3}, #{param4}, 'N', 'N')
+	</insert>
+	
+	<select id="showCart" parameterType="String" resultType="com.shoppingmall.personalcolor.dto.OrderprodDto">
+		SELECT *
+		  FROM M_ORDERPROD
+		 WHERE M_CUSTOMER_ID = #{m_customer_id}
+	</select>
+	
+	
+	
+</mapper>
